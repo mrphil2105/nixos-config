@@ -15,7 +15,7 @@ local function register_keymaps()
     vim.keymap.set("n", "<leader>bA", function()
         if is_running then return end
         for _, config in ipairs(dap.configurations["typescript"]) do
-            dap.run(config, { new = true })
+            if not string.find(config.name, "worker") then dap.run(config, { new = true }) end
         end
         is_running = true
     end, { desc = "Launch All" })
