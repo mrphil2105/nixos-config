@@ -45,13 +45,10 @@ in
       animations.enabled = false;
       dwindle.pseudotile = true;
       dwindle.preserve_split = true;
+      input.kb_layout = "us,dk";
+      input.kb_options = "caps:escape,grp:win_space_toggle";
       misc.force_default_wallpaper = 1;
       misc.enable_anr_dialog = false;
-      input = {
-        kb_layout = "us,dk";
-        kb_options = "caps:escape,grp:win_space_toggle";
-        accel_profile = "flat";
-      };
       "$mainMod" = "SUPER";
       bind = [
         "$mainMod, C, killactive,"

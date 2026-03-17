@@ -14,6 +14,9 @@
     hud_no_margin = true;
   };
   wayland.windowManager.hyprland.settings = {
+    input.accel_profile = "flat";
+    general.allow_tearing = true;
+    misc.vrr = 3;
     monitor = [
       "DP-6, 2560x1440@144, 0x0, 1"
       "HDMI-A-2, 1920x1080, 2560x360, 1"
@@ -51,8 +54,6 @@
       "LIBVA_DRIVER_NAME,nvidia"
       "__GLX_VENDOR_LIBRARY_NAME,nvidia"
     ];
-    general.allow_tearing = true;
-    misc.vrr = 3;
   };
   home.stateVersion = "25.05";
 }
