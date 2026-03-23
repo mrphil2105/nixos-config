@@ -8,10 +8,11 @@
   services.power-profiles-daemon.enable = true;
   services.openvpn.servers = {
     router = {
-      config = ''config /home/mrphil2105/.openvpn/router.ovpn'';
+      config = "config /home/mrphil2105/.openvpn/router.ovpn";
       autoStart = true;
     };
   };
+  services.tailscale.enable = true;
   # https://kisonecat.com/blog/eduroam-openssl-wpa-supplicant/
   nixpkgs.config.packageOverrides = pkgs: {
     wpa_supplicant = pkgs.wpa_supplicant.overrideAttrs (attrs: {
