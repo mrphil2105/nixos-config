@@ -22,4 +22,5 @@
   programs.nix-ld.enable = true;
   services.gnome.gnome-keyring.enable = true;
   services.envfs.enable = true;
+  services.udisks2.enable = true;
 }
