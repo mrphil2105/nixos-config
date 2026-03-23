@@ -17,6 +17,7 @@
     "nix-command"
     "flakes"
   ];
+  nix.settings.auto-optimise-store = true;
   programs.zsh.enable = true;
   programs.zsh.enableGlobalCompInit = false;
   programs.nix-ld.enable = true;
