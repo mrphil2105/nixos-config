@@ -1,7 +1,5 @@
 { ... }:
 {
-  services.openssh.enable = true;
   services.pcscd.enable = true;
   programs.gnupg.agent.enable = true;
-  programs.gnupg.agent.enableSSHSupport = true;
 }
