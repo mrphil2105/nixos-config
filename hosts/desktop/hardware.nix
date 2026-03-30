@@ -35,10 +35,6 @@
     device = "/dev/disk/by-label/NIXOS-NIX";
     fsType = "ext4";
   };
-  fileSystems."/var/lib/docker" = {
-    device = "/dev/disk/by-label/NIXOS-DOCKER";
-    fsType = "ext4";
-  };
   fileSystems."/home" = {
     device = "/dev/disk/by-label/NIXOS-HOME";
     fsType = "ext4";
