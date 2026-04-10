@@ -6,7 +6,6 @@
     brightnessctl
     ffmpeg-full
     file
-    fzf
     gptfdisk
     jq
     libnotify
