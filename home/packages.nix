@@ -13,6 +13,7 @@
     npins
     ouch
     p7zip
+    parted
     pciutils
     playerctl
     rclone
