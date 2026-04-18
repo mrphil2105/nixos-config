@@ -49,6 +49,7 @@
     mpv
     signal-desktop
     slack
+    solaar
     spotify
     tor-browser
     vesktop
