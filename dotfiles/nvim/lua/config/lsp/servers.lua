@@ -9,7 +9,7 @@ return {
     clangd = {
         cmd = {
             "clangd",
-            "--compile-commands-dir=out",
+            "--compile-commands-dir=build/debug",
             "--background-index",
             "--clang-tidy",
             "--all-scopes-completion",
