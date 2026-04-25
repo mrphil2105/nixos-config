@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   imports = [ ../../home ];
   wayland.windowManager.hyprland.settings = {
