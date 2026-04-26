@@ -4,6 +4,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
     lanzaboote.url = "github:nix-community/lanzaboote/v1.1.0";
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
@@ -14,52 +16,5 @@
     walker.url = "github:abenz1267/walker";
     walker.inputs.elephant.follows = "elephant";
   };
-  outputs =
-    inputs@{
-      nixpkgs,
-      nur,
-      home-manager,
-      nix-index-database,
-      ...
-    }:
-    let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
-      hosts = {
-        mrphil2105-NixLaptop = "laptop";
-        mrphil2105-NixDesktop = "desktop";
-      };
-      mkNixos =
-        hostname: host:
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            nur.modules.nixos.default
-            ./hosts/${host}/configuration.nix
-          ];
-          specialArgs = {
-            inherit inputs host;
-          };
-        };
-      mkHome =
-        hostname: host:
-        home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./hosts/${host}/home.nix
-            nix-index-database.homeModules.nix-index
-            { programs.nix-index-database.comma.enable = true; }
-          ];
-          extraSpecialArgs = {
-            inherit inputs host;
-          };
-        };
-    in
-    {
-      nixosConfigurations = nixpkgs.lib.mapAttrs mkNixos hosts;
-      homeConfigurations = nixpkgs.lib.mapAttrs' (hostname: host: {
-        name = "mrphil2105@${hostname}";
-        value = mkHome hostname host;
-      }) hosts;
-    };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }
