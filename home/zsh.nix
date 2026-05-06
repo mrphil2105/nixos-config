@@ -21,9 +21,11 @@ in
       hms = "home-manager switch --flake ~/.nixos";
       nrs = "sudo nixos-rebuild switch --flake ~/.nixos";
       nrt = "sudo nixos-rebuild test --flake ~/.nixos";
+      nrb = "sudo nixos-rebuild boot --flake ~/.nixos";
       v = "nvim";
       s = "systemctl suspend";
       sl = "nohup hyprlock >/dev/null 2>&1 & sleep 0.3 && systemctl suspend";
+      glff = "git pull --ff-only";
       ituvpn = "sudo openfortivpn sslvpn.itu.dk -u phimo";
     };
     plugins = [
