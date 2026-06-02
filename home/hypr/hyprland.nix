@@ -53,7 +53,6 @@ in
       "$mainMod" = "SUPER";
       bind = [
         "$mainMod, C, killactive,"
-        "$mainMod, M, exit,"
         "$mainMod, F, fullscreen"
         "$mainMod, V, togglefloating,"
 
