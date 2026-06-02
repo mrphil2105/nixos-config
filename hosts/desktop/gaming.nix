@@ -1,7 +1,10 @@
 { pkgs, ... }:
 {
-  programs.steam.enable = true;
-  programs.steam.extraCompatPackages = [ pkgs.proton-ge-bin ];
+  programs.steam = {
+    enable = true;
+    extraPackages = [ pkgs.hidapi ];
+    extraCompatPackages = [ pkgs.proton-ge-bin ];
+  };
   programs.gamescope.enable = true;
   programs.gamescope.package = pkgs.gamescope.overrideAttrs (old: {
     # Fix blurry output
