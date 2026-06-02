@@ -44,7 +44,6 @@ in
       };
       xwayland.force_zero_scaling = true;
       animations.enabled = false;
-      dwindle.pseudotile = true;
       dwindle.preserve_split = true;
       input.kb_layout = "us,dk";
       input.kb_options = "caps:escape,grp:win_space_toggle";
@@ -164,7 +163,7 @@ in
         "match:title Yazi, workspace 4"
         "match:class Ferdium, workspace 5"
         "match:class vesktop, workspace 6"
-        "match:class spotify, workspace 7"
+        "match:class Spotify, workspace 7"
         "match:class Bitwarden, workspace 7"
       ];
     };
