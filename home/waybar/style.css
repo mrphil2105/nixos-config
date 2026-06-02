@@ -2,12 +2,12 @@
     font-family: '0xPropo', sans-serif;
     font-weight: 500;
     font-size: 14px;
+    color: #A0AAB4;
 }
 
 #waybar {
     /* background-color: #14191E; */
     background: transparent;
-    color: #C8DCF0;
     margin: 0 4px;
 }
 
@@ -48,6 +48,10 @@
 #backlight,
 #custom-notification {
     margin-right: 4px;
+}
+
+#tray image {
+    opacity: 0.75;
 }
 
 #workspaces button {
