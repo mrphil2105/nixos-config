@@ -20,10 +20,6 @@
     exec-once = [
       "vesktop --ozone-platform=wayland --start-minimized &"
     ];
-    windowrule = [
-      "match:class vesktop, workspace 6"
-      "match:class spotify, workspace 7"
-    ];
   };
   programs.zsh.shellAliases = {
     startvpn = "sudo systemctl start openvpn-router.service";

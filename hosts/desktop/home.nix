@@ -18,8 +18,7 @@
     general.allow_tearing = true;
     misc.vrr = 3;
     monitor = [
-      "DP-6, 2560x1440@144, 0x0, 1"
-      "HDMI-A-2, 1920x1080, 2560x360, 1"
+      "HDMI-A-2, 3840x2160@240, 0x0, 1.5, bitdepth, 10, cm, hdr, sdrbrightness, 1.5, sdrsaturation, 1"
     ];
     workspace = [
       "1, monitor:DP-6"
@@ -39,12 +38,10 @@
       "15, monitor:HDMI-A-2"
     ];
     exec-once = [
-      "vesktop --ozone-platform=wayland & spotify & steam -silent &"
+      "vesktop --ozone-platform=wayland --start-minimized & steam -silent &"
     ];
     windowrule = [
-      "match:class steam, workspace 6"
-      "match:class vesktop, workspace 14"
-      "match:class spotify, workspace 15"
+      "match:class steam, workspace 9"
       "match:class ^(steam_app_\\d+|gamescope|cs2)$, monitor DP-6"
       "match:class ^(steam_app_\\d+|gamescope|cs2)$, fullscreen on"
       "match:class ^(steam_app_\\d+|gamescope|cs2)$, workspace 10"
