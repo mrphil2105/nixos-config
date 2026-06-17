@@ -3,7 +3,10 @@
   programs.steam = {
     enable = true;
     extraPackages = [ pkgs.hidapi ];
-    extraCompatPackages = [ pkgs.proton-ge-bin ];
+    extraCompatPackages = [
+      pkgs.proton-ge-bin
+      pkgs.nur.repos.vladexa.proton-cachyos
+    ];
   };
   programs.gamescope.enable = true;
   programs.gamescope.package = pkgs.gamescope.overrideAttrs (old: {

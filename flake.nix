@@ -2,6 +2,8 @@
   description = "NixOS Configuration";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nur.url = "github:nix-community/NUR";
+    nur.inputs.nixpkgs.follows = "nixpkgs";
     lanzaboote.url = "github:nix-community/lanzaboote/v1.0.0";
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
@@ -15,6 +17,7 @@
   outputs =
     inputs@{
       nixpkgs,
+      nur,
       home-manager,
       nix-index-database,
       ...
@@ -30,7 +33,10 @@
         hostname: host:
         nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/${host}/configuration.nix ];
+          modules = [
+            nur.modules.nixos.default
+            ./hosts/${host}/configuration.nix
+          ];
           specialArgs = {
             inherit inputs host;
           };
