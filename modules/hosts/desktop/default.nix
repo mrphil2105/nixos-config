@@ -1,12 +1,13 @@
 { inputs, self, ... }: {
   flake.nixosConfigurations.desktop = inputs.nixpkgs.lib.nixosSystem {
     modules = [
-      self.nixosModules.core
-      self.nixosModules.desktopModule
-      self.nixosModules.gaming
+      self.modules.nixos.core
+      self.modules.nixos.personal
+      self.modules.nixos.desktop
+      self.modules.nixos.gaming
     ];
   };
-  flake.nixosModules.desktopModule = { lib, pkgs, ... }: {
+  flake.modules.nixos.desktop = { lib, pkgs, ... }: {
     imports = [
       inputs.lanzaboote.nixosModules.lanzaboote
       ./hardware.nix
@@ -22,5 +23,6 @@
     environment.systemPackages = [ pkgs.sbctl ];
     networking.hostName = "mrphil2105-NixDesktop";
     system.stateVersion = "25.05";
+    home-manager.users.mrphil2105.home.stateVersion = "25.05";
   };
 }

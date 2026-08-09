@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.nixosModules.gaming = { pkgs, ... }: {
+  flake.modules.nixos.gaming = { pkgs, ... }: {
     programs.steam = {
       enable = true;
       extraPackages = [ pkgs.hidapi ];
@@ -28,5 +28,19 @@
       KERNEL=="hidraw*", ATTRS{idVendor}=="373e", ATTRS{idProduct}=="001e", MODE="0666", GROUP="input", TAG+="uaccess"
       KERNEL=="hidraw*", ATTRS{idVendor}=="373e", ATTRS{idProduct}=="001c", MODE="0666", GROUP="input", TAG+="uaccess"
     '';
+  };
+  flake.modules.homeManager.gaming = { pkgs, ... }: {
+    home.packages = with pkgs; [
+      nvtopPackages.nvidia
+      prismlauncher
+      satisfactorymodmanager
+      wootility
+    ];
+    programs.mangohud.enable = true;
+    programs.mangohud.settings = {
+      preset = "1,-1,0,2,3,4";
+      font_size = 18;
+      hud_no_margin = true;
+    };
   };
 }
