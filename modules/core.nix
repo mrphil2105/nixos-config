@@ -1,18 +1,21 @@
-{ inputs, ... }:
+{ inputs, self, ... }:
 {
   imports = [
     inputs.flake-parts.flakeModules.modules
     inputs.home-manager.flakeModules.home-manager
   ];
   flake.modules.nixos.core = { ... }: {
-    modules = [
+    imports = [
       inputs.home-manager.nixosModules.home-manager
     ];
-    nix.settings.experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-    nix.settings.auto-optimise-store = true;
+    nix.settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      auto-optimise-store = true;
+    };
+    nixpkgs.config.allowUnfree = true;
     programs.zsh = {
       enable = true;
       enableGlobalCompInit = false;
@@ -28,6 +31,9 @@
     };
   };
   flake.modules.homeManager.core = { ... }: {
-    programs.bat.enable = true;
+    imports = [
+      self.modules.homeManager.cliPrograms
+      self.modules.homeManager.neovim
+    ];
   };
 }

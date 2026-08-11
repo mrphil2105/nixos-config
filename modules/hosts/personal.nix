@@ -6,6 +6,9 @@
     ];
   };
   flake.modules.homeManager.personal = { ... }: {
-    programs.firefox.enable = true;
+    imports = [
+      self.modules.homeManager.guiPrograms
+      self.modules.homeManager.personalPrograms
+    ];
   };
 }
