@@ -10,7 +10,7 @@
         "lazy-lock.json"
         "stylua.toml"
       ];
-      dotfilesDir = "${config.home.homeDirectory}/.nixos/dotfiles/nvim";
+      dotfilesDir = "${config.home.homeDirectory}/.nix/dotfiles/nvim";
     in
     {
       programs.neovim = {

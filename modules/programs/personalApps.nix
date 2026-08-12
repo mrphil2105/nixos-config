@@ -1,5 +1,5 @@
 { ... }: {
-  flake.modules.homeManager.personalPrograms = { pkgs, ... }: {
+  flake.modules.homeManager.personalApps = { pkgs, ... }: {
     programs.firefox.enable = true;
     home.packages = with pkgs; [
       brave-origin

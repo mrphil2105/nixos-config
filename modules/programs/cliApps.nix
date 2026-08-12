@@ -1,8 +1,9 @@
 { self, ... }: {
-  flake.modules.homeManager.cliPrograms = { pkgs, ... }: {
-    imports = [
-      self.modules.homeManager.git
-      self.modules.homeManager.yazi
+  flake.modules.homeManager.cliApps = { pkgs, ... }: {
+    imports = with self.modules.homeManager; [
+      git
+      yazi
+      tmux
     ];
     programs.bat.enable = true;
     home.packages = with pkgs; [

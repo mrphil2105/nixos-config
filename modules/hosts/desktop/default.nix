@@ -1,20 +1,21 @@
 { inputs, self, ... }: {
   flake.nixosConfigurations.desktop = inputs.nixpkgs.lib.nixosSystem {
     modules = [
-      self.modules.nixos.core
-      self.modules.nixos.personal
       self.modules.nixos.desktop
-      self.modules.nixos.gaming
     ];
   };
   flake.modules.nixos.desktop = { lib, pkgs, ... }: {
-    imports = [
-      inputs.lanzaboote.nixosModules.lanzaboote
-      ./hardware.nix
-      ./nvidia.nix
-      ./gaming.nix
-      ../../system
-    ];
+    imports =
+      with self.modules.nixos;
+      [
+        personal
+        gaming
+        nvidia
+      ]
+      ++ [
+        ./hardware.nix
+        inputs.lanzaboote.nixosModules.lanzaboote
+      ];
     boot.loader.systemd-boot.enable = lib.mkForce false;
     boot.loader.systemd-boot.consoleMode = "max";
     boot.lanzaboote.enable = true;

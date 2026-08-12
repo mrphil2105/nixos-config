@@ -1,6 +1,5 @@
 { ... }: {
-  flake.modules.homeManager.workPrograms = { pkgs, ... }: {
-    programs.firefox.enable = true;
+  flake.modules.homeManager.workApps = { pkgs, ... }: {
     home.packages = with pkgs; [
       _1password-gui
       bruno
