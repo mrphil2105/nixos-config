@@ -1,10 +1,13 @@
 { self, ... }: {
-  flake.modules.homeManager.guiApps = { pkgs, ... }: {
+  flake.modules.homeManager.guiApps = { config, pkgs, ... }: {
     imports = with self.modules.homeManager; [
       ghostty
       walker
     ];
-    programs.firefox.enable = true;
+    programs.firefox = {
+      enable = true;
+      configPath = "${config.xdg.configHome}/mozilla/firefox";
+    };
     programs.vscode = {
       enable = true;
       profiles.default.extensions = [ pkgs.vscode-extensions.vscodevim.vim ];
