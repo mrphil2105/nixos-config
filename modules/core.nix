@@ -1,12 +1,12 @@
-{ inputs, self, ... }:
-{
+{ inputs, self, ... }: {
   imports = [
     inputs.flake-parts.flakeModules.modules
     inputs.home-manager.flakeModules.home-manager
   ];
-  flake.modules.nixos.core = { ... }: {
-    imports = [
-      inputs.home-manager.nixosModules.home-manager
+  flake.modules.nixos.core = { lib, pkgs, ... }: {
+    imports = with self.modules.nixos; [
+      system
+      user
     ];
     nix.settings = {
       experimental-features = [
@@ -16,24 +16,25 @@
       auto-optimise-store = true;
     };
     nixpkgs.config.allowUnfree = true;
-    programs.zsh = {
-      enable = true;
-      enableGlobalCompInit = false;
+    boot = {
+      kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+      loader = {
+        systemd-boot.enable = true;
+        efi.canTouchEfiVariables = true;
+      };
     };
-    programs.nix-ld.enable = true;
-    programs.fuse.enable = true;
-    services.gnome.gnome-keyring.enable = true;
-    services.envfs.enable = true;
-    services.udisks2.enable = true;
-    home-manager = {
-      useGlobalPkgs = true;
-      useUserPackages = true;
-    };
+    time.timeZone = "Europe/Copenhagen";
+    i18n.defaultLocale = "en_DK.UTF-8";
+    networking.networkmanager.enable = true;
+    environment.systemPackages = with pkgs; [
+      vim
+      git
+    ];
   };
   flake.modules.homeManager.core = { ... }: {
-    imports = [
-      self.modules.homeManager.cliPrograms
-      self.modules.homeManager.neovim
+    imports = with self.modules.homeManager; [
+      cliPrograms
+      neovim
     ];
   };
 }
