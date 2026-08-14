@@ -25,6 +25,14 @@
     };
     time.timeZone = "Europe/Copenhagen";
     i18n.defaultLocale = "en_DK.UTF-8";
+    services.xserver = {
+      enable = false;
+      xkb = {
+        layout = "us";
+        options = "eurosign:e,caps:escape";
+      };
+    };
+    console.useXkbConfig = true;
     networking.networkmanager.enable = true;
     environment.systemPackages = with pkgs; [
       vim
@@ -34,6 +42,7 @@
   flake.modules.homeManager.core = { ... }: {
     imports = with self.modules.homeManager; [
       cliPrograms
+      tmux
       neovim
     ];
   };

@@ -1,11 +1,11 @@
 { self, ... }: {
   flake.modules.nixos.personal = { ... }: {
     imports = with self.modules.nixos; [
-      core
+      general
       obsStudio
     ];
     home-manager.users.mrphil2105.imports = with self.modules.homeManager; [
-      core
+      general
       personal
     ];
   };

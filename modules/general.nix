@@ -1,12 +1,9 @@
-{ ... }: {
+{ self, ... }: {
   flake.modules.nixos.general = { pkgs, ... }: {
-    services.xserver = {
-      enable = false;
-      xkb = {
-        layout = "us";
-        options = "eurosign:e,caps:escape";
-      };
-    };
+    imports = with self.modules.nixos; [
+      core
+      hyprland
+    ];
     services.displayManager = {
       sddm = {
         enable = true;
@@ -18,12 +15,7 @@
       };
       defaultSession = "hyprland";
     };
-    hardware.graphics = {
-      enable = true;
-      enable32Bit = true;
-    };
-    console.useXkbConfig = true;
-    programs.hyprland.enable = true;
+    programs.dconf.enable = true;
     fonts = {
       enableDefaultPackages = true;
       packages = with pkgs; [
@@ -34,9 +26,33 @@
         noto-fonts-cjk-sans
         noto-fonts-color-emoji
       ];
-      fontconfig.useEmbeddedBitmaps = true;
-      fontconfig.defaultFonts = {
-        monospace = [ "JetBrainsMono NF" ];
+      fontconfig.defaultFonts.monospace = [ "JetBrainsMono NF" ];
+    };
+  };
+  flake.modules.homeManager.general = { pkgs, ... }: {
+    imports = with self.modules.homeManager; [
+      core
+      hyprland
+    ];
+    home.pointerCursor = {
+      enable = true;
+      gtk.enable = true;
+      package = pkgs.capitaine-cursors;
+      name = "capitaine-cursors";
+      size = 32;
+    };
+    gtk = {
+      enable = true;
+      iconTheme = {
+        name = "Papirus-Dark";
+        package = pkgs.papirus-icon-theme;
+      };
+      gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
+      gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
+    };
+    dconf.settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
       };
     };
   };

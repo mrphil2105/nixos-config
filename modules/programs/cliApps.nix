@@ -3,7 +3,6 @@
     imports = with self.modules.homeManager; [
       git
       yazi
-      tmux
     ];
     programs.bat.enable = true;
     home.packages = with pkgs; [

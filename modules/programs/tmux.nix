@@ -42,6 +42,9 @@
         unbind M-Up
         unbind M-Down
         unbind -n C-\\
+        set -g @tokyo-night-tmux_show_git 1
+        set -g @tokyo-night-tmux_show_wbg 1
+        set -g @tokyo-night-tmux_show_datetime 1
       '';
       plugins = with pkgs.tmuxPlugins; [
         vim-tmux-navigator

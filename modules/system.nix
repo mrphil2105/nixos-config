@@ -5,6 +5,10 @@
   ];
   flake.modules.nixos.system = { ... }: {
     hardware = {
+      graphics = {
+        enable = true;
+        enable32Bit = true;
+      };
       bluetooth.enable = true;
       logitech.wireless.enable = true;
     };
