@@ -35,7 +35,7 @@
   };
   flake.modules.homeManager.core = { ... }: {
     imports = with self.modules.homeManager; [
-      cliPrograms
+      cliApps
       neovim
     ];
   };

@@ -14,7 +14,7 @@
         nvidia
       ]
       ++ [
-        ./hardware.nix
+        ./_hardware.nix
         inputs.lanzaboote.nixosModules.lanzaboote
       ];
     boot = {

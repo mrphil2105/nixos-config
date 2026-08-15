@@ -11,7 +11,7 @@
   flake.modules.homeManager.personal = { ... }: {
     imports = with self.modules.homeManager; [
       general
-      personalPrograms
+      personalApps
       ssh
     ];
   };

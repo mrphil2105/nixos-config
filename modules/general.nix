@@ -33,7 +33,7 @@
     imports = with self.modules.homeManager; [
       core
       hyprland
-      guiPrograms
+      guiApps
     ];
     home.pointerCursor = {
       enable = true;
