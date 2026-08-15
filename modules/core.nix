@@ -41,6 +41,7 @@
   };
   flake.modules.homeManager.core = { ... }: {
     imports = with self.modules.homeManager; [
+      zsh
       cliApps
       tmux
       neovim

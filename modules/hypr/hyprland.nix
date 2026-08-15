@@ -1,7 +1,4 @@
 { ... }: {
-  flake.modules.nixos.hyprland = { ... }: {
-    programs.hyprland.enable = true;
-  };
   flake.modules.homeManager.hyprland = { ... }: {
     wayland.windowManager.hyprland = {
       enable = true;

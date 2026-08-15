@@ -1,8 +1,7 @@
 { self, ... }: {
   flake.modules.nixos.general = { pkgs, ... }: {
-    imports = with self.modules.nixos; [
-      core
-      hyprland
+    imports = [
+      self.modules.nixos.core
     ];
     services.displayManager = {
       sddm = {
@@ -15,7 +14,10 @@
       };
       defaultSession = "hyprland";
     };
-    programs.dconf.enable = true;
+    programs = {
+      hyprland.enable = true;
+      dconf.enable = true;
+    };
     fonts = {
       enableDefaultPackages = true;
       packages = with pkgs; [
@@ -32,7 +34,7 @@
   flake.modules.homeManager.general = { pkgs, ... }: {
     imports = with self.modules.homeManager; [
       core
-      hyprland
+      hypr
       guiApps
     ];
     home.pointerCursor = {

@@ -1,4 +1,4 @@
-{ self, ... }: {
+{ ... }: {
   flake.modules.homeManager.zsh =
     { lib, pkgs, ... }:
     let
@@ -21,10 +21,10 @@
             }
           '';
           shellAliases = {
-            hms = "home-manager switch --flake ~/.nixos";
-            nrs = "sudo nixos-rebuild switch --flake ~/.nixos";
-            nrt = "sudo nixos-rebuild test --flake ~/.nixos";
-            nrb = "sudo nixos-rebuild boot --flake ~/.nixos";
+            hms = "home-manager switch --flake ~/.nix";
+            nrs = "sudo nixos-rebuild switch --flake ~/.nix";
+            nrt = "sudo nixos-rebuild test --flake ~/.nix";
+            nrb = "sudo nixos-rebuild boot --flake ~/.nix";
             v = "nvim";
             s = "systemctl suspend";
             sl = "nohup hyprlock >/dev/null 2>&1 & sleep 0.3 && systemctl suspend";
