@@ -35,11 +35,13 @@
       satisfactorymodmanager
       wootility
     ];
-    programs.mangohud.enable = true;
-    programs.mangohud.settings = {
-      preset = "1,-1,0,2,3,4";
-      font_size = 18;
-      hud_no_margin = true;
+    programs.mangohud = {
+      enable = true;
+      settings = {
+        preset = "1,-1,0,2,3,4";
+        font_size = 18;
+        hud_no_margin = true;
+      };
     };
   };
 }

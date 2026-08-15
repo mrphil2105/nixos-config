@@ -2,14 +2,18 @@
   flake.modules.nixos.nvidia = { config, pkgs, ... }: {
     hardware.nvidia = {
       modesetting.enable = true;
-      powerManagement.enable = true;
-      powerManagement.finegrained = false;
+      powerManagement = {
+        enable = true;
+        finegrained = false;
+      };
       open = true;
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
-    services.xserver.videoDrivers = [ "nvidia" ];
-    services.lact.enable = true;
+    services = {
+      xserver.videoDrivers = [ "nvidia" ];
+      lact.enable = true;
+    };
     programs.obs-studio.package = pkgs.obs-studio.override { cudaSupport = true; };
   };
 }

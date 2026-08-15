@@ -1,5 +1,6 @@
 { inputs, self, ... }: {
   flake.nixosConfigurations.desktop = inputs.nixpkgs.lib.nixosSystem {
+    specialArgs = { inherit inputs; };
     modules = [
       self.modules.nixos.desktop
     ];
@@ -16,10 +17,16 @@
         ./hardware.nix
         inputs.lanzaboote.nixosModules.lanzaboote
       ];
-    boot.loader.systemd-boot.enable = lib.mkForce false;
-    boot.loader.systemd-boot.consoleMode = "max";
-    boot.lanzaboote.enable = true;
-    boot.lanzaboote.pkiBundle = "/var/lib/sbctl";
+    boot = {
+      loader.systemd-boot = {
+        enable = lib.mkForce false;
+        consoleMode = "max";
+      };
+      lanzaboote = {
+        enable = true;
+        pkiBundle = "/var/lib/sbctl";
+      };
+    };
     services.udev.packages = [ pkgs.wooting-udev-rules ];
     environment.systemPackages = [ pkgs.sbctl ];
     networking.hostName = "mrphil2105-NixDesktop";
