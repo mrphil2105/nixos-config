@@ -3,8 +3,10 @@
     programs.git = {
       enable = true;
       settings = {
-        user.name = "Philip Mørch";
-        user.email = "mrphil2105@gmail.com";
+        user = {
+          name = "Philip Mørch";
+          email = "mrphil2105@gmail.com";
+        };
         init.defaultBranch = "main";
         pull.rebase = true;
         merge.ff = false;
@@ -12,10 +14,10 @@
     };
     programs.lazygit = {
       enable = true;
-      settings = {
-        git.autoForwardBranches = "none";
-        git.autoFetch = false;
-        git.autoStageResolvedConflicts = false;
+      settings.git = {
+        autoForwardBranches = "none";
+        autoFetch = false;
+        autoStageResolvedConflicts = false;
       };
     };
   };

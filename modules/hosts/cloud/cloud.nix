@@ -15,6 +15,7 @@
     programs = {
       home-manager.enable = true;
       zsh.shellAliases.hms = "home-manager switch --flake ~/.nix";
+      tmux.extraConfig = "set -g @tokyo-night-tmux_show_hostname 1";
     };
     home = {
       username = "philip";
