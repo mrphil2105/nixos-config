@@ -37,6 +37,7 @@
       core
       hypr
       guiApps
+      ssh
     ];
     home.pointerCursor = {
       enable = true;

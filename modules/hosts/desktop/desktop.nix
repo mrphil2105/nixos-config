@@ -8,7 +8,8 @@
     imports =
       with self.modules.nixos;
       [
-        personal
+        general
+        obsStudio
         gaming
         nvidia
       ]
@@ -38,8 +39,10 @@
     };
   };
   flake.modules.homeManager.desktop = { lib, pkgs, ... }: {
-    imports = [
-      self.modules.homeManager.gaming
+    imports = with self.modules.homeManager; [
+      general
+      personalApps
+      gaming
     ];
     home.packages = [
       pkgs.nvtopPackages.nvidia

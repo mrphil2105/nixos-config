@@ -1,10 +1,10 @@
 { inputs, self, ... }: {
-  flake.nixosConfigurations.mrphil2105-NixLaptop = inputs.nixpkgs.lib.nixosSystem {
+  flake.nixosConfigurations.philip-WorkLaptop = inputs.nixpkgs.lib.nixosSystem {
     modules = [
-      self.modules.nixos.laptop
+      self.modules.nixos.work
     ];
   };
-  flake.modules.nixos.laptop = { ... }: {
+  flake.modules.nixos.work = { ... }: {
     imports = [
       self.modules.nixos.general
       ./_hardware.nix
@@ -21,24 +21,20 @@
     system.stateVersion = "25.11";
     home-manager.users.mrphil2105 = {
       imports = [
-        self.modules.homeManager.laptop
+        self.modules.homeManager.work
       ];
       home.stateVersion = "25.11";
     };
   };
-  flake.modules.homeManager.laptop = { lib, ... }: {
-    imports = with self.modules.homeManager; [
-      general
-      personalApps
+  flake.modules.homeManager.work = { lib, ... }: {
+    imports = [
+      self.modules.homeManager.general
     ];
     wayland.windowManager.hyprland.settings = {
       monitor = [
         "eDP-1, 1920x1200, 0x0, 1"
       ];
       workspace = map (i: "${toString i}, monitor:eDP-1") (lib.range 1 10);
-      exec-once = [
-        "vesktop --ozone-platform=wayland --start-minimized &"
-      ];
     };
     programs.zsh.shellAliases = {
       startvpn = "sudo systemctl start openvpn-router.service";
