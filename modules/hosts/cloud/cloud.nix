@@ -12,7 +12,10 @@
       self.modules.homeManager.core
     ];
     nixpkgs.config.allowUnfree = true;
-    programs.home-manager.enable = true;
+    programs = {
+      home-manager.enable = true;
+      zsh.shellAliases.hms = "home-manager switch --flake ~/.nix";
+    };
     home = {
       username = "philip";
       homeDirectory = "/home/philip";

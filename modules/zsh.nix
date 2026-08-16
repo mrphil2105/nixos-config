@@ -21,7 +21,6 @@
             }
           '';
           shellAliases = {
-            hms = "home-manager switch --flake ~/.nix";
             nrs = "sudo nixos-rebuild switch --flake ~/.nix";
             nrt = "sudo nixos-rebuild test --flake ~/.nix";
             nrb = "sudo nixos-rebuild boot --flake ~/.nix";
