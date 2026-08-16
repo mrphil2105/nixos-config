@@ -1,7 +1,8 @@
-{ self, ... }: {
+{ inputs, self, ... }: {
   flake.modules.nixos.general = { pkgs, ... }: {
     imports = [
       self.modules.nixos.core
+      inputs.nur.modules.nixos.default
     ];
     services.displayManager = {
       sddm = {
