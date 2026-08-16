@@ -18,12 +18,12 @@
       };
       tailscale.enable = true;
     };
-    system.stateVersion = "25.11";
+    system.stateVersion = "26.05";
     home-manager.users.mrphil2105 = {
       imports = [
         self.modules.homeManager.work
       ];
-      home.stateVersion = "25.11";
+      home.stateVersion = "26.05";
     };
   };
   flake.modules.homeManager.work = { lib, ... }: {
