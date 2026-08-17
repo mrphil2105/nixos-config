@@ -46,6 +46,8 @@
           ps.lua-toml
           ps.xml2lua
         ];
+        withRuby = false;
+        withPython3 = false;
       };
       xdg.configFile =
         (builtins.listToAttrs (

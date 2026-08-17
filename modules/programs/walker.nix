@@ -10,8 +10,8 @@
         keybinds = {
           next = [ "ctrl j" ];
           previous = [ "ctrl k" ];
+          quick_activate = [ ];
         };
-        keybinds.quick_activate = [ ];
       };
     };
   };

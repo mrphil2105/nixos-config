@@ -59,6 +59,7 @@
         "vesktop --ozone-platform=wayland --start-minimized & steam -silent &"
       ];
       windowrule = [
+        "match:class vesktop, workspace 6"
         "match:class steam, workspace 9"
       ]
       ++ map (effect: "match:class ^(steam_app_\\d+|gamescope|cs2)$, ${effect}") [

@@ -1,5 +1,5 @@
 { inputs, self, ... }: {
-  flake.modules.nixos.general = { pkgs, ... }: {
+  flake.modules.nixos.general = { config, pkgs, ... }: {
     imports = [
       self.modules.nixos.core
       inputs.nur.modules.nixos.default
@@ -11,7 +11,7 @@
       };
       autoLogin = {
         enable = true;
-        user = "mrphil2105";
+        user = config.my.username;
       };
       defaultSession = "hyprland";
     };

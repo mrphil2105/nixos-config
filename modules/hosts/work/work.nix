@@ -9,6 +9,7 @@
       self.modules.nixos.general
       ./_hardware.nix
     ];
+    my.username = "philip";
     networking.hostName = "philip-WorkLaptop";
     services = {
       power-profiles-daemon.enable = true;
@@ -27,14 +28,17 @@
       general
       workApps
     ];
-    wayland.windowManager.hyprland = {
-      configType = "hyprlang";
-      settings = {
-        monitor = [
-          "eDP-1, 1920x1200, 0x0, 1"
-        ];
-        workspace = map (i: "${toString i}, monitor:eDP-1") (lib.range 1 10);
-      };
+    wayland.windowManager.hyprland.settings = {
+      monitor = [
+        "eDP-1, 1920x1200, 0x0, 1"
+      ];
+      workspace = map (i: "${toString i}, monitor:eDP-1") (lib.range 1 10);
+      exec-once = [
+        "slack --startup &"
+      ];
+      windowrule = [
+        "match:class slack, workspace 6"
+      ];
     };
   };
 }

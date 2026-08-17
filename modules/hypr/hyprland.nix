@@ -5,6 +5,7 @@
       xwayland.enable = true;
       package = null;
       portalPackage = null;
+      configType = "hyprlang";
       settings = {
         "$terminal" = "ghostty";
         "$fileManager" = "ghostty --title=Yazi -e yazi";
@@ -156,9 +157,8 @@
           "match:class firefox, workspace 3"
           "match:title Yazi, workspace 4"
           "match:class Ferdium, workspace 5"
-          "match:class vesktop, workspace 6"
           "match:class Spotify, workspace 7"
-          "match:class Bitwarden, workspace 7"
+          "match:class bitwarden, workspace 7"
         ];
       };
     };
