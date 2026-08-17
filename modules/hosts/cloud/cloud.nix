@@ -1,12 +1,10 @@
 { inputs, self, ... }: {
-  flake.homeConfigurations."philip@cloud-computer-philip" =
-    inputs.home-manager.lib.homeManagerConfiguration
-      {
-        pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-        modules = [
-          self.modules.homeManager.cloud
-        ];
-      };
+  flake.homeConfigurations."philip" = inputs.home-manager.lib.homeManagerConfiguration {
+    pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+    modules = [
+      self.modules.homeManager.cloud
+    ];
+  };
   flake.modules.homeManager.cloud = { ... }: {
     imports = [
       self.modules.homeManager.core

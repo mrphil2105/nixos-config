@@ -33,12 +33,18 @@
     };
   };
   flake.modules.homeManager.general = { pkgs, ... }: {
-    imports = with self.modules.homeManager; [
-      core
-      hypr
-      guiApps
-      ssh
-    ];
+    imports =
+      with self.modules.homeManager;
+      [
+        core
+        hypr
+        guiApps
+        ssh
+      ]
+      ++ [
+        inputs.nix-index-database.homeModules.nix-index
+      ];
+    programs.nix-index-database.comma.enable = true;
     home.pointerCursor = {
       enable = true;
       gtk.enable = true;

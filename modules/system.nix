@@ -1,8 +1,4 @@
-{ inputs, self, ... }: {
-  imports = [
-    inputs.flake-parts.flakeModules.modules
-    inputs.home-manager.flakeModules.home-manager
-  ];
+{ ... }: {
   flake.modules.nixos.system = { ... }: {
     hardware = {
       graphics = {
@@ -32,11 +28,5 @@
       gnupg.agent.enable = true;
     };
     virtualisation.docker.enable = true;
-  };
-  flake.modules.homeManager.core = { ... }: {
-    imports = with self.modules.homeManager; [
-      cliApps
-      neovim
-    ];
   };
 }
