@@ -38,6 +38,7 @@
       [
         core
         hypr
+        xdg
         guiApps
         ssh
       ]
