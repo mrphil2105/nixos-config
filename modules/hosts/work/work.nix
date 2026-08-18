@@ -14,7 +14,17 @@
     services = {
       power-profiles-daemon.enable = true;
       tailscale.enable = true;
+      intune.enable = true;
+      gnome.glib-networking.enable = true;
     };
+    nixpkgs.overlays = [
+      (final: prev: {
+        microsoft-identity-broker = prev.microsoft-identity-broker.overrideAttrs (old: {
+          nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ final.wrapGAppsHook3 ];
+          buildInputs = (old.buildInputs or [ ]) ++ [ final.glib-networking ];
+        });
+      })
+    ];
     system.stateVersion = "26.05";
     home-manager.users.philip = {
       imports = [
