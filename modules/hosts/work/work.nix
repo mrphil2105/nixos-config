@@ -73,9 +73,9 @@
         (map (i: "${toString i}, monitor:eDP-1") (lib.range 1 10))
         ++ (map (i: "${toString i}, monitor:desc:Dell Inc. DELL S2722DC 7C9MHD3") (lib.range 11 13))
         ++ (map (i: "${toString i}, monitor:desc:Dell Inc. DELL S2725DC 2XNKPC4") (lib.range 14 15));
-      # exec-once = [
-      #   "slack --startup &"
-      # ];
+      exec-once = [
+        "slack --startup &"
+      ];
       windowrule = [
         "match:class slack, workspace 6"
       ];
