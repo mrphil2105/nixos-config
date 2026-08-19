@@ -4,13 +4,15 @@
       ghostty
       walker
     ];
-    programs.firefox = {
-      enable = true;
-      configPath = "${config.xdg.configHome}/mozilla/firefox";
-    };
-    programs.vscode = {
-      enable = true;
-      profiles.default.extensions = [ pkgs.vscode-extensions.vscodevim.vim ];
+    programs = {
+      firefox = {
+        enable = true;
+        configPath = "${config.xdg.configHome}/mozilla/firefox";
+      };
+      vscode = {
+        enable = true;
+        profiles.default.extensions = [ pkgs.vscode-extensions.vscodevim.vim ];
+      };
     };
     home.packages = with pkgs; [
       bitwarden-desktop
