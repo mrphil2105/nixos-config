@@ -2,7 +2,7 @@
   flake.modules.homeManager.git =
     { lib, ... }:
     let
-      deltaPager = lib.concatStringsSep " " [
+      deltaCommand = lib.concatStringsSep " " [
         "delta"
         "--dark"
         "--paging=never"
@@ -31,9 +31,9 @@
             autoForwardBranches = "none";
             autoFetch = false;
             autoStageResolvedConflicts = false;
-            pagers = [
+            diffRenderers = [
               {
-                pager = deltaPager;
+                command = deltaCommand;
               }
             ];
           };
