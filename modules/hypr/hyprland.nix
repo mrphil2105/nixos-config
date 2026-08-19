@@ -1,0 +1,170 @@
+{ ... }: {
+  flake.modules.homeManager.hyprland = { ... }: {
+    wayland.windowManager.hyprland = {
+      enable = true;
+      xwayland.enable = true;
+      package = null;
+      portalPackage = null;
+      configType = "hyprlang";
+      settings = {
+        "$terminal" = "ghostty";
+        "$fileManager" = "ghostty --title=Yazi -e yazi";
+        "$audioMixer" = "ghostty --title=wiremix -e wiremix --tab output";
+        "$menu" = "walker";
+        "$browser" = "firefox";
+        "$lockScreen" = "hyprlock";
+        exec-once = [
+          "hyprctl setcursor capitaine-cursors 32"
+          "ghostty --title='Ghostty Primary' -e tmux &"
+          "waybar & ferdium & firefox &"
+        ];
+        env = [
+          "XCURSOR_SIZE,32"
+          "HYPRCURSOR_SIZE,32"
+        ];
+        general = {
+          layout = "master";
+          gaps_in = 2;
+          gaps_out = 4;
+          border_size = 1;
+          "col.active_border" = "rgba(007799ee) rgba(007744ee) 45deg";
+          "col.inactive_border" = "rgba(595959aa)";
+        };
+        decoration = {
+          rounding = 4;
+          shadow = {
+            enabled = true;
+            range = 4;
+            render_power = 3;
+            color = "rgba(1a1a1aee)";
+          };
+          blur.enabled = false;
+        };
+        xwayland.force_zero_scaling = true;
+        animations.enabled = false;
+        dwindle.preserve_split = true;
+        input = {
+          kb_layout = "us,dk";
+          kb_options = "caps:escape,grp:win_space_toggle";
+        };
+        misc = {
+          force_default_wallpaper = 1;
+          enable_anr_dialog = false;
+        };
+        "$mainMod" = "SUPER";
+        bind = [
+          "$mainMod, C, killactive,"
+          "$mainMod, F, fullscreen"
+          "$mainMod, V, togglefloating,"
+
+          "$mainMod, Q, exec, $terminal"
+          "$mainMod, R, exec, $menu"
+          "$mainMod, B, exec, $browser"
+          "$mainMod, E, exec, $fileManager"
+          "$mainMod, A, exec, $audioMixer"
+          "$mainMod, Escape, exec, $lockScreen"
+
+          "$mainMod, S, layoutmsg, swapwithmaster # master"
+          "$mainMod, N, layoutmsg, cyclenext # master"
+          "$mainMod, P, layoutmsg, cycleprev # master"
+          "$mainMod SHIFT, N, layoutmsg, swapnext # master"
+          "$mainMod SHIFT, P, layoutmsg, swapprev # master"
+          "$mainMod, S, layoutmsg, togglesplit # dwindle"
+
+          "$mainMod, H, movefocus, l"
+          "$mainMod, L, movefocus, r"
+          "$mainMod, K, movefocus, u"
+          "$mainMod, J, movefocus, d"
+
+          "$mainMod SHIFT, H, movewindow, l"
+          "$mainMod SHIFT, L, movewindow, r"
+          "$mainMod SHIFT, K, movewindow, u"
+          "$mainMod SHIFT, J, movewindow, d"
+
+          "$mainMod, 1, workspace, 1"
+          "$mainMod, 2, workspace, 2"
+          "$mainMod, 3, workspace, 3"
+          "$mainMod, 4, workspace, 4"
+          "$mainMod, 5, workspace, 5"
+          "$mainMod, 6, workspace, 6"
+          "$mainMod, 7, workspace, 7"
+          "$mainMod, 8, workspace, 8"
+          "$mainMod, 9, workspace, 9"
+          "$mainMod, 0, workspace, 10"
+
+          "$mainMod, T, workspace, 11"
+          "$mainMod, Y, workspace, 12"
+          "$mainMod, U, workspace, 13"
+          "$mainMod, I, workspace, 14"
+          "$mainMod, O, workspace, 15"
+
+          "$mainMod SHIFT, 1, movetoworkspace, 1"
+          "$mainMod SHIFT, 2, movetoworkspace, 2"
+          "$mainMod SHIFT, 3, movetoworkspace, 3"
+          "$mainMod SHIFT, 4, movetoworkspace, 4"
+          "$mainMod SHIFT, 5, movetoworkspace, 5"
+          "$mainMod SHIFT, 6, movetoworkspace, 6"
+          "$mainMod SHIFT, 7, movetoworkspace, 7"
+          "$mainMod SHIFT, 8, movetoworkspace, 8"
+          "$mainMod SHIFT, 9, movetoworkspace, 9"
+          "$mainMod SHIFT, 0, movetoworkspace, 10"
+
+          "$mainMod SHIFT, T, movetoworkspace, 11"
+          "$mainMod SHIFT, Y, movetoworkspace, 12"
+          "$mainMod SHIFT, U, movetoworkspace, 13"
+          "$mainMod SHIFT, I, movetoworkspace, 14"
+          "$mainMod SHIFT, O, movetoworkspace, 15"
+
+          "$mainMod, W, togglespecialworkspace, magic"
+          "$mainMod SHIFT, W, movetoworkspace, special:magic"
+
+          ", PRINT, exec, hyprshot -m output --clipboard-only"
+          "$mainMod, PRINT, exec, hyprshot -m window --clipboard-only"
+          "$mainMod SHIFT, PRINT, exec, hyprshot -m region --clipboard-only"
+
+          "CONTROL, PRINT, exec, hyprshot -m output"
+          "$mainMod CONTROL, PRINT, exec, hyprshot -m window"
+          "$mainMod SHIFT CONTROL, PRINT, exec, hyprshot -m region"
+        ];
+        binde = [
+          "$mainMod CONTROL, H, resizeactive, -50 0"
+          "$mainMod CONTROL, L, resizeactive, 50 0"
+          "$mainMod CONTROL, K, resizeactive, 0 -30"
+          "$mainMod CONTROL, J, resizeactive, 0 30"
+        ];
+        bindm = [
+          "$mainMod, mouse:272, resizewindow"
+          "$mainMod, mouse:273, movewindow"
+        ];
+        bindel = [
+          ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 2%+"
+          ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"
+          ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+          ", XF86MonBrightnessUp, exec, brightnessctl -e4 -n2 set 5%+"
+          ", XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
+        ];
+        bindl = [
+          ", switch:Lid Switch, exec, hyprlock"
+          ", switch:on:Lid Switch, exec, hyprctl keyword monitor \"eDP-1, disable\""
+          ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"eDP-1, 1920x1200, 0x0, 1\""
+          ", XF86AudioNext, exec, playerctl next"
+          ", XF86AudioPause, exec, playerctl play-pause"
+          ", XF86AudioPlay, exec, playerctl play-pause"
+          ", XF86AudioPrev, exec, playerctl previous"
+        ];
+        windowrule = [
+          "match:class .*, suppress_event maximize"
+          # Fix some dragging issues with XWayland
+          "match:class ^$, match:title ^$, match:xwayland true, match:float true, match:fullscreen false, match:pin false, no_focus on"
+          "match:title Ghostty Primary, workspace 1"
+          "match:class firefox, workspace 3"
+          "match:title Yazi, workspace 4"
+          "match:class Ferdium, workspace 5"
+          "match:class Spotify, workspace 7"
+          "match:class bitwarden, workspace 7"
+        ];
+      };
+    };
+  };
+}

@@ -1,0 +1,48 @@
+{ ... }: {
+  flake.modules.homeManager.git =
+    { lib, ... }:
+    let
+      deltaPager = lib.concatStringsSep " " [
+        "delta"
+        "--dark"
+        "--paging=never"
+        "--line-numbers"
+        "--hyperlinks"
+        ''--hyperlinks-file-link-format="lazygit-edit://{path}:{line}"''
+      ];
+    in
+    {
+      programs = {
+        git = {
+          enable = true;
+          settings = {
+            user = {
+              name = "Philip Mørch";
+              email = "mrphil2105@gmail.com";
+            };
+            init.defaultBranch = "main";
+            pull.rebase = true;
+            merge.ff = false;
+          };
+        };
+        lazygit = {
+          enable = true;
+          settings.git = {
+            autoForwardBranches = "none";
+            autoFetch = false;
+            autoStageResolvedConflicts = false;
+            pagers = [
+              {
+                pager = deltaPager;
+              }
+            ];
+          };
+        };
+        delta = {
+          enable = true;
+          enableGitIntegration = true;
+          options.line-numbers = true;
+        };
+      };
+    };
+}
