@@ -28,6 +28,7 @@
       ripgrep
       tldr
       tree
+      tuicr
       unzip
       usbutils
       wiremix
