@@ -6,6 +6,7 @@ local vscode = require("dap.ext.vscode")
 local launch_file = vim.fn.getcwd() .. "/.vscode/launch.json"
 local prerequisite_file = vim.fn.getcwd() .. "/package.json"
 local js_dap_env_var = "JS_DAP_SERVER"
+local user_data_dir_env_var = "CHROMIUM_USER_DATA_DIR"
 
 function M.enabled() return utils.file_exists(launch_file) and utils.file_exists(prerequisite_file) end
 
@@ -48,7 +49,8 @@ end
 
 local function clean_dap_config(config)
     if config.type == "chrome" then
-        config.userDataDir = "${workspaceFolder}/.chromium-user-data"
+        local user_data_dir = os.getenv(user_data_dir_env_var)
+        config.userDataDir = user_data_dir ~= nil and user_data_dir or "${workspaceFolder}/.chromium-user-data"
         config.skipFiles = { "<node_internals>/**", "node_modules/**", "**/node_modules/**" }
         config.runtimeExecutable = nil
     end
