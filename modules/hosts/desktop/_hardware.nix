@@ -39,6 +39,22 @@
     device = "/dev/disk/by-label/NIXOS-HOME";
     fsType = "ext4";
   };
+  fileSystems."/mnt/games" = {
+    device = "/dev/disk/by-label/Games";
+    fsType = "ntfs";
+    options = [
+      "uid=1000"
+      "gid=100"
+      "umask=0077"
+      "iocharset=utf8"
+      "noatime"
+      "nocase"
+      "windows_names"
+      "discard"
+      "nofail"
+      "errors=remount-ro"
+    ];
+  };
   swapDevices = [ ];
   networking.useDHCP = lib.mkDefault true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
