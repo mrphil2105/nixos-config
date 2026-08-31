@@ -19,6 +19,7 @@
             function zvm_after_init() {
               zvm_bindkey viins '^Y' autosuggest-accept
             }
+            zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
           '';
           shellAliases = {
             nrs = "sudo nixos-rebuild switch --flake ~/.nix";
@@ -39,6 +40,11 @@
               name = "powerlevel10k";
               src = pkgs.zsh-powerlevel10k;
               file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+            }
+            {
+              name = "fzf-tab";
+              src = pkgs.zsh-fzf-tab;
+              file = "share/fzf-tab/fzf-tab.plugin.zsh";
             }
             {
               name = "you-should-use";
