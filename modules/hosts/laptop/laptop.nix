@@ -25,23 +25,12 @@
       home.stateVersion = "25.11";
     };
   };
-  flake.modules.homeManager.laptop = { lib, ... }: {
+  flake.modules.homeManager.laptop = { ... }: {
     imports = with self.modules.homeManager; [
       general
       personalApps
     ];
-    wayland.windowManager.hyprland.settings = {
-      monitor = [
-        "eDP-1, 1920x1200, 0x0, 1"
-      ];
-      workspace = map (i: "${toString i}, monitor:eDP-1") (lib.range 1 10);
-      exec-once = [
-        "vesktop --ozone-platform=wayland --start-minimized &"
-      ];
-      windowrule = [
-        "match:class vesktop, workspace 6"
-      ];
-    };
+    wayland.windowManager.hyprland.extraLuaFiles."10-host" = ./hyprland.lua;
     programs.zsh.shellAliases = {
       startvpn = "sudo systemctl start openvpn-router.service";
       stopvpn = "sudo systemctl stop openvpn-router.service";

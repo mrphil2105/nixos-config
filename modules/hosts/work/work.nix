@@ -58,36 +58,11 @@
       home.stateVersion = "26.05";
     };
   };
-  flake.modules.homeManager.work = { lib, ... }: {
+  flake.modules.homeManager.work = { ... }: {
     imports = with self.modules.homeManager; [
       general
       workApps
     ];
-    wayland.windowManager.hyprland.settings = {
-      monitor = [
-        "eDP-1, 1920x1200, 0x0, 1"
-        "desc:Dell Inc. DELL S2722DC 7C9MHD3, 2560x1440, -1600x-1440, 1"
-        "desc:Dell Inc. DELL S2725DC 2XNKPC4, 2560x1440, 960x-1440, 1"
-        "desc:GIGA-BYTE TECHNOLOGY CO. LTD. AORUS FO32U2P, 3840x2160, -320x-1440, 1.5"
-      ];
-      workspace =
-        let
-          bind =
-            start: end: monitor:
-            map (i: "${toString i}, monitor:${monitor}") (lib.range start end);
-        in
-        lib.concatLists [
-          (bind 1 10 "eDP-1")
-          (bind 11 13 "desc:Dell Inc. DELL S2722DC 7C9MHD3")
-          (bind 14 15 "desc:Dell Inc. DELL S2725DC 2XNKPC4")
-          (bind 11 15 "desc:GIGA-BYTE TECHNOLOGY CO. LTD. AORUS FO32U2P")
-        ];
-      exec-once = [
-        "slack --startup &"
-      ];
-      windowrule = [
-        "match:class slack, workspace 6"
-      ];
-    };
+    wayland.windowManager.hyprland.extraLuaFiles."10-host" = ./hyprland.lua;
   };
 }
