@@ -18,7 +18,7 @@
       bitwarden-desktop
       ferdium
       imv
-      libreoffice-qt-fresh
+      libreoffice-qt
       mpv
       spotify
       vlc
