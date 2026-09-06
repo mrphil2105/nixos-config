@@ -4,16 +4,19 @@
       self.modules.nixos.core
       inputs.nur.modules.nixos.default
     ];
-    services.displayManager = {
-      sddm = {
-        enable = true;
-        wayland.enable = true;
+    services = {
+      displayManager = {
+        sddm = {
+          enable = true;
+          wayland.enable = true;
+        };
+        autoLogin = {
+          enable = true;
+          user = config.my.username;
+        };
+        defaultSession = "hyprland";
       };
-      autoLogin = {
-        enable = true;
-        user = config.my.username;
-      };
-      defaultSession = "hyprland";
+      flatpak.enable = true;
     };
     programs = {
       hyprland.enable = true;
