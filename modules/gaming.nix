@@ -3,6 +3,7 @@
     programs = {
       steam = {
         enable = true;
+        protontricks.enable = true;
         extraPackages = [ pkgs.hidapi ];
         extraCompatPackages = [
           pkgs.proton-ge-bin
@@ -11,6 +12,10 @@
       };
       gamescope.enable = true;
     };
+    environment.systemPackages = with pkgs; [
+      wineWow64Packages.stable
+      winetricks
+    ];
     services = {
       ananicy = {
         enable = true;
