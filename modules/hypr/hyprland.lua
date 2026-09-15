@@ -184,7 +184,7 @@ local workspace_rules = {
 	{ match = { title = "Ghostty Primary" }, workspace = 1 },
 	{ match = { class = "firefox" }, workspace = 3 },
 	{ match = { title = "Yazi" }, workspace = 4 },
-	{ match = { class = "Ferdium" }, workspace = 5 },
+	{ match = { class = "ferdium" }, workspace = 5 },
 	{ match = { class = "Spotify" }, workspace = 7 },
 	{ match = { class = "bitwarden" }, workspace = 7 },
 }

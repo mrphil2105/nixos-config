@@ -31,7 +31,7 @@
           texlab
           texliveFull
           tree-sitter
-          typescript-go
+          typescript
           vscode-extensions.vadimcn.vscode-lldb
           vscode-langservers-extracted
           (python3.withPackages (
