@@ -38,9 +38,6 @@ hl.config({
 	animations = {
 		enabled = false,
 	},
-	dwindle = {
-		preserve_split = true,
-	},
 	input = {
 		kb_layout = "us,dk",
 		kb_options = "caps:escape,grp:win_space_toggle",
@@ -76,7 +73,6 @@ hl.bind(main_mod .. " + N", hl.dsp.layout("cyclenext"))
 hl.bind(main_mod .. " + P", hl.dsp.layout("cycleprev"))
 hl.bind(main_mod .. " + SHIFT + N", hl.dsp.layout("swapnext"))
 hl.bind(main_mod .. " + SHIFT + P", hl.dsp.layout("swapprev"))
-hl.bind(main_mod .. " + S", hl.dsp.layout("togglesplit"))
 
 hl.bind(main_mod .. " + H", hl.dsp.focus({ direction = "left" }))
 hl.bind(main_mod .. " + L", hl.dsp.focus({ direction = "right" }))
