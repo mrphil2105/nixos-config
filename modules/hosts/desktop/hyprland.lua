@@ -8,6 +8,9 @@ hl.config({
 	misc = {
 		vrr = 3,
 	},
+	render = {
+		direct_scanout = 2,
+	},
 })
 
 hl.env("LIBVA_DRIVER_NAME", "nvidia")
@@ -57,5 +60,6 @@ for i, rule in ipairs(game_rules) do
 		fullscreen = true,
 		workspace = 10,
 		content = "game",
+		immediate = true,
 	})
 end
