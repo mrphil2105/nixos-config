@@ -45,10 +45,17 @@ hl.window_rule({
 	workspace = 9,
 })
 
-hl.window_rule({
-	name = "games",
-	match = { class = "^(steam_app_\\d+|gamescope|cs2)$" },
-	fullscreen = true,
-	workspace = 10,
-	content = "game",
-})
+local game_rules = {
+	{ class = "^(steam_app_\\d+|gamescope|cs2|tf_linux64)$" },
+	{ xdg_tag = "proton-game" },
+}
+
+for i, rule in ipairs(game_rules) do
+	hl.window_rule({
+		name = "games-" .. i,
+		match = rule,
+		fullscreen = true,
+		workspace = 10,
+		content = "game",
+	})
+end
