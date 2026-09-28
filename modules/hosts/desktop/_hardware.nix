@@ -17,8 +17,15 @@
     "sd_mod"
   ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [
+    "kvm-amd"
+    "ntsync"
+  ];
   boot.extraModulePackages = [ ];
+  boot.kernelParams = [ "split_lock_mitigate=0" ];
+  boot.kernel.sysctl = {
+    "vm.max_map_count" = 2147483642;
+  };
   fileSystems."/" = {
     device = "/dev/disk/by-label/NIXOS-ROOT";
     fsType = "ext4";
