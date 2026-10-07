@@ -32,13 +32,32 @@ local function bind_workspaces(first, last, monitor)
 			workspace = tostring(workspace),
 			monitor = monitor,
 		})
+
+		if hl.get_workspace(tostring(workspace)) then
+			hl.dispatch(hl.dsp.workspace.move({
+				workspace = tostring(workspace),
+				monitor = monitor,
+			}))
+		end
+	end
+end
+
+local aorus = "desc:GIGA-BYTE TECHNOLOGY CO. LTD. AORUS FO32U2P"
+
+local function bind_external_workspaces()
+	if hl.get_monitor(aorus) then
+		bind_workspaces(11, 15, aorus)
+	else
+		bind_workspaces(11, 12, "desc:Dell Inc. DELL S2722DC 7C9MHD3")
+		bind_workspaces(13, 15, "desc:Dell Inc. DELL S2725DC 2XNKPC4")
 	end
 end
 
 bind_workspaces(1, 10, "eDP-1")
-bind_workspaces(11, 13, "desc:Dell Inc. DELL S2722DC 7C9MHD3")
-bind_workspaces(14, 15, "desc:Dell Inc. DELL S2725DC 2XNKPC4")
-bind_workspaces(11, 15, "desc:GIGA-BYTE TECHNOLOGY CO. LTD. AORUS FO32U2P")
+bind_external_workspaces()
+
+hl.on("monitor.added", bind_external_workspaces)
+hl.on("monitor.removed", bind_external_workspaces)
 
 hl.on("hyprland.start", function()
 	hl.exec_cmd("slack --startup &")
