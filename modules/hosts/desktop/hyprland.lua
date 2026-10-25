@@ -17,7 +17,6 @@ hl.env("LIBVA_DRIVER_NAME", "nvidia")
 hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 
 local aorus = "desc:GIGA-BYTE TECHNOLOGY CO. LTD. AORUS FO32U2P"
-local hdr_enabled = false
 
 local function set_hdr(enabled)
 	hl.monitor({
@@ -31,11 +30,14 @@ local function set_hdr(enabled)
 	})
 end
 
-set_hdr(hdr_enabled)
+local initial_monitor = hl.get_monitor(aorus)
+set_hdr(initial_monitor ~= nil and initial_monitor.cm == "hdr")
 
 hl.bind("SUPER + D", function()
-	hdr_enabled = not hdr_enabled
-	set_hdr(hdr_enabled)
+	local current_monitor = hl.get_monitor(aorus)
+	if current_monitor then
+		set_hdr(current_monitor.cm ~= "hdr")
+	end
 end)
 
 for workspace = 1, 10 do
