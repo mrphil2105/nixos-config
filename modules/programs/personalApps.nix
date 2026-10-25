@@ -9,6 +9,7 @@
       signal-desktop
       solaar
       tor-browser
+      ungoogled-chromium
     ];
   };
 }
