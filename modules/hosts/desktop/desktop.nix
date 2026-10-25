@@ -28,7 +28,10 @@
       };
     };
     environment.systemPackages = [ pkgs.sbctl ];
-    services.udev.packages = [ pkgs.wooting-udev-rules ];
+    services = {
+      udev.packages = [ pkgs.wooting-udev-rules ];
+      mullvad-vpn.enable = true;
+    };
     networking.hostName = "mrphil2105-NixDesktop";
     system.stateVersion = "25.05";
     home-manager.users.mrphil2105 = {
@@ -44,8 +47,10 @@
       personalApps
       gaming
     ];
-    home.packages = [
-      pkgs.nvtopPackages.nvidia
+    programs.mullvad-vpn.enable = true;
+    home.packages = with pkgs; [
+      nvtopPackages.nvidia
+      stremio-linux-shell
     ];
     wayland.windowManager.hyprland.extraLuaFiles."10-host" = ./hyprland.lua;
   };
