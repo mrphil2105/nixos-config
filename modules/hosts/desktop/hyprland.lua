@@ -61,6 +61,12 @@ hl.window_rule({
 	workspace = 9,
 })
 
+hl.window_rule({
+	name = "mpv-content-type",
+	match = { class = "mpv" },
+	content = "none",
+})
+
 local game_rules = {
 	{ class = "^(steam_app_\\d+|gamescope|cs2|tf_linux64)$" },
 	{ xdg_tag = "proton-game" },
