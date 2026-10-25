@@ -16,19 +16,32 @@ hl.config({
 hl.env("LIBVA_DRIVER_NAME", "nvidia")
 hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 
-hl.monitor({
-	output = "desc:GIGA-BYTE TECHNOLOGY CO. LTD. AORUS FO32U2P",
-	mode = "3840x2160@240",
-	position = "0x0",
-	scale = 1.5,
-	bitdepth = 10,
-	cm = "srgb",
-})
+local aorus = "desc:GIGA-BYTE TECHNOLOGY CO. LTD. AORUS FO32U2P"
+local hdr_enabled = false
+
+local function set_hdr(enabled)
+	hl.monitor({
+		output = aorus,
+		mode = "3840x2160@240",
+		position = "0x0",
+		scale = 1.5,
+		bitdepth = 10,
+		cm = enabled and "hdr" or "srgb",
+		sdrbrightness = 1.3,
+	})
+end
+
+set_hdr(hdr_enabled)
+
+hl.bind("SUPER + D", function()
+	hdr_enabled = not hdr_enabled
+	set_hdr(hdr_enabled)
+end)
 
 for workspace = 1, 10 do
 	hl.workspace_rule({
 		workspace = tostring(workspace),
-		monitor = "desc:GIGA-BYTE TECHNOLOGY CO. LTD. AORUS FO32U2P",
+		monitor = aorus,
 	})
 end
 
