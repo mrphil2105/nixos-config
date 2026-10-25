@@ -13,11 +13,11 @@ for workspace = 1, 10 do
 end
 
 hl.on("hyprland.start", function()
-	hl.exec_cmd("vesktop --ozone-platform=wayland --start-minimized &")
+	hl.exec_cmd("discord --start-minimized &")
 end)
 
 hl.window_rule({
-	name = "vesktop-workspace",
-	match = { class = "vesktop" },
+	name = "discord-workspace",
+	match = { class = "discord" },
 	workspace = 6,
 })
